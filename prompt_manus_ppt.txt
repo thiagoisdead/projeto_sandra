@@ -1,0 +1,108 @@
+Abaixo está um prompt extremamente detalhado e estruturado para você enviar para o Manus AI (ou outra inteligência artificial geradora de apresentações). 
+
+Ele instrui a IA a criar uma apresentação de slides profissional, moderna e completa, dividida em seções acadêmicas e de engenharia de software, utilizando toda a informação que consolidamos do sistema de portaria do Condomínio Reserva da Aldeia.
+
+======================================================================
+PROMPT PARA ENVIAR À IA GERADORA DE POWERPOINT (MANUS AI / SLIDESGO / GAMMA):
+======================================================================
+
+"Por favor, gere uma apresentação de slides em formato PowerPoint (PPTX) baseada nas instruções e dados detalhados abaixo. O objetivo da apresentação é defender e apresentar um 'Projeto de Curricularização da Extensão' para a disciplina de 'Linguagem de Programação'.
+
+O tema é o desenvolvimento de um 'Sistema Desktop de Portaria para o Condomínio Reserva da Aldeia' usando Java e banco de dados SQLite.
+
+---
+
+### DIRETRIZES VISUAIS E ESTILO:
+- **Esquema de Cores:** Paleta corporativa e moderna. Use tons de azul escuro (confiabilidade, segurança de dados), cinza grafite, branco para fundos limpos e detalhes sutis em verde esmeralda (representando condomínio/reserva).
+- **Tipografia:** Fontes modernas, limpas e geométricas sem serifa (ex: Inter, Montserrat ou Roboto).
+- **Layout dos Slides:** Evite excesso de texto (aplique a regra de tópicos concisos). Use caixas de destaque, ícones de tecnologia/segurança, tabelas organizadas e diagramas visuais.
+- **Estrutura:** 11 slides ao todo.
+
+---
+
+### ESTRUTURA DOS SLIDES E CONTEÚDOS EXATOS:
+
+#### Slide 1: Capa do Projeto
+- **Título Principal:** Sistema de Portaria Reserva da Aldeia
+- **Subtítulo:** Projeto de Curricularização da Extensão – Disciplina de Linguagem de Programação
+- **Elementos Visuais:** Ícone de um condomínio integrado a um escudo de segurança digital.
+- **Nota do Orador:** Apresentar a equipe, o objetivo do projeto de extensão universitária e o condomínio atendido.
+
+#### Slide 2: Introdução e Contexto (Cenário do Problema)
+- **Título:** O Cenário Real da Portaria
+- **Tópicos:**
+  * O Condomínio Reserva da Aldeia apresentava fragilidades no controle manual de acessos (anotações em cadernos físicas).
+  * Falhas no rastreamento de entregas de encomendas.
+  * Lentidão no atendimento de visitantes.
+- **Destaque Visual:** Uma caixa de aviso chamando a atenção para a 'Necessidade de Segurança e Rastreabilidade'.
+
+#### Slide 3: O Olhar do Analista (Análise Gramatical do Texto)
+- **Título:** Análise Gramatical para Requisitos
+- **Conteúdo:** 
+  * Explicação do método: identificação de Substantivos (futuras Entidades/Atores) e Verbos (futuras Funcionalidades/Relacionamentos) a partir do briefing do cliente.
+  * **Substantivos Destacados:** Porteiro, Síndico, Morador, Visitante, Apartamento, Encomenda, Documento, Histórico.
+  * **Verbos Destacados:** Cadastrar, Registrar entrada/saída, Alertar entrega, Consultar histórico, Gerenciar.
+- **Layout:** Duas colunas lado a lado comparando 'Substantivos' e 'Verbos' com cores contrastantes.
+
+#### Slide 4: Atores do Sistema e seus Papéis
+- **Título:** Mapeamento de Atores
+- **Conteúdo (Tabela):**
+  * **Administrador (Síndico):** Gerencia cadastros base (apartamentos, moradores, porteiros) e auditoria.
+  * **Porteiro:** Operador do dia a dia. Registra visitas, entrada/saída e recebimento de encomendas.
+  * **Morador:** Destinatário final de encomendas e autorizador de visitas.
+  * **Visitante:** Ator passivo cujos dados são registrados para controle de acesso.
+- **Layout:** Tabela limpa ou cartões explicativos para cada ator.
+
+#### Slide 5: Requisitos Funcionais (RFs)
+- **Título:** Requisitos Funcionais (O que o sistema faz)
+- **Tópicos principais em lista:**
+  * **RF001 (Acesso):** Controle de acesso de usuários via login e senha.
+  * **RF002 a RF005 (Cadastros):** Gerenciamento (CRUD) de Usuários, Apartamentos, Moradores e Visitantes.
+  * **RF006 (Movimentação):** Registro de entrada e saída de visitantes com vínculo ao morador/apartamento.
+  * **RF007 (Logística):** Controle de recebimento e entrega de encomendas.
+
+#### Slide 6: Requisitos Não Funcionais (RNFs)
+- **Título:** Requisitos Não Funcionais (Atributos de Qualidade)
+- **Tópicos principais em cartões horizontais:**
+  * **RNF001 (Portabilidade):** Desenvolvido em Java Swing (multiplataforma).
+  * **RNF002 (Offline/Local):** Banco de dados SQLite embarcado na máquina local da guarita, funcionando sem internet.
+  * **RNF003 (Usabilidade):** Interface desktop simples e de rápido aprendizado.
+  * **RNF004 (Segurança):** Senhas salvas com algoritmo de Hash de segurança.
+  * **RNF005 (Privacidade):** Adequação conceitual à LGPD para proteger dados de visitantes.
+
+#### Slide 7: Diagrama de Casos de Uso (UML)
+- **Título:** Casos de Uso do Sistema
+- **Instrução de Imagem:** Gere ou desenhe um diagrama UML de Casos de Uso conectando o Administrador (Síndico) a todos os cadastros (usuários, moradores, apartamentos) e o Porteiro às operações de guarita (registrar visitas, entrada/saída, gerenciar encomendas). Ambos passam pelo caso de uso 'Efetuar Login' que possui relação de <<include>>.
+
+#### Slide 8: Modelagem de Banco de Dados (DER)
+- **Título:** Diagrama de Entidade-Relacionamento
+- **Instrução de Imagem/Layout:** Exiba a modelagem relacional do banco de dados SQLite:
+  * Tabela `USUARIOS` (id, login, senha, tipo, cpf).
+  * Tabela `APARTAMENTOS` (id, torre, bloco, andar, numero).
+  * Tabela `MORADORES` (id, nome, cpf, login, senha, apartamento_id FK).
+  * Tabela `VISITANTES` (id, nome, cpf, apartamento_id FK, morador_id FK, data_entrada, data_saida).
+  * Tabela `ENCOMENDAS` (id, morador_id FK, entregador, recebedor, data_recebimento, status).
+  * Indicar os relacionamentos 1-para-muitos (ex: Apartamento possui muitos Moradores).
+
+#### Slide 9: Arquitetura Tecnológica e Implementação
+- **Título:** Pilha Tecnológica do Projeto
+- **Tópicos:**
+  * **Linguagem:** Java Standard Edition (Java SE).
+  * **Interface Gráfica (GUI):** Java Swing (LoginView e MainView).
+  * **Persistência de Dados:** SQLite (banco de dados leve relacional) via driver JDBC.
+  * **Padrão de Projeto:** DAO (Data Access Object) para isolamento da lógica de persistência.
+
+#### Slide 10: Retorno à Comunidade (Projeto de Extensão)
+- **Título:** Impacto da Curricularização da Extensão
+- **Tópicos:**
+  * **Segurança Aumentada:** Redução de falhas humanas no registro de visitantes.
+  * **Organização Logística:** Fim de encomendas esquecidas ou extraviadas na portaria.
+  * **Formação Profissional:** Aplicação prática dos conceitos de Linguagem de Programação em um cenário do mundo real.
+
+#### Slide 11: Conclusão
+- **Título:** Conclusão e Próximos Passos
+- **Tópicos:**
+  * O protótipo desenvolvido prova a viabilidade de sistemas desktop independentes de nuvem para condomínios residenciais.
+  * A arquitetura em DAOs e SQLite facilitará futuras expansões (como envio de avisos por WhatsApp/E-mail aos moradores).
+  * Projeto concluído com sucesso atendendo a todos os requisitos do público-alvo."
+======================================================================

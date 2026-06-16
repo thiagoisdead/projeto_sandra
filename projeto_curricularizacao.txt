@@ -1,0 +1,174 @@
+Projeto de Curricularização da Extensão - Linguagem de Programação
+Sistema de Portaria - Condomínio Reserva da Aldeia
+
+A) Cenário e Análise do Texto
+
+Cenário do Sistema:
+O Condomínio Reserva da Aldeia necessita de um sistema informatizado para gerenciar as rotinas diárias da portaria, com o objetivo de aumentar a segurança e melhorar o controle de acesso, que atualmente possui falhas devido a anotações manuais. O novo sistema deverá permitir que o porteiro possa registrar a entrada e a saída de cada visitante, exigindo o vínculo com o apartamento de destino e o morador responsável pela autorização. Além do controle de pessoas, o fluxo da portaria envolve gerenciar o recebimento de encomendas, anotando o remetente, a data de recebimento e alertando o momento em que o morador efetuar a retirada do pacote. Para a gestão geral, o síndico (atuando como administrador) precisará cadastrar novos usuários (como os funcionários da guarita), gerenciar os dados dos apartamentos e realizar o cadastro dos moradores, tendo ainda a capacidade de consultar o histórico de acessos para fins de auditoria. Cada visitante terá seu nome e documento registrados no banco de dados.
+
+Análise do Texto:
+i) Substantivos (Atores, Entidades ou Atributos):
+- Atores: porteiro, síndico, administrador, usuário, visitante, morador.
+- Entidades do Banco de Dados: sistema, portaria, apartamento, encomenda.
+- Atributos: remetente, data de recebimento, histórico de acessos, nome, documento, entrada, saída.
+
+ii) Verbos (Funcionalidades ou Relacionamentos):
+- gerenciar, aumentar (segurança), melhorar (controle), permitir, registrar (entrada/saída/recebimento), exigir (vínculo), alertar, efetuar (retirada), atuar, cadastrar (usuários/apartamentos/moradores), consultar (historico).
+
+======================================================================
+
+B) Definição de Atores e Requisitos (Funcionais e Não Funcionais)
+
+i) Atores
+
+Ator: Porteiro
+Papel desempenhado: Funcionário da guarita, será a pessoa que irá operar o sistema no dia a dia, responsável por registrar as visitas e o recebimento de encomendas.
+
+Ator: Administrador (Síndico)
+Papel desempenhado: O administrador será a pessoa responsável por gerenciar os cadastros base (apartamentos, moradores, outros usuários) e acessar relatórios ou histórico do sistema.
+
+Ator: Visitante
+Papel desempenhado: Pessoa externa (ator passivo no sistema) que interage com o condomínio, tendo seus dados registrados.
+
+Ator: Morador
+Papel desempenhado: Residente do condomínio, atua como o responsável pela autorização de visitas e destinatário final de encomendas.
+
+----------------------------------------------------------------------
+
+ii) Requisitos Funcionais
+
+RF001
+Descrição: O sistema deve permitir o controle de acesso de usuários mediante login e senha.
+
+RF002
+Descrição: O sistema deve permitir o gerenciamento (inclusão, alteração, consulta e exclusão) de usuários (porteiros e administradores).
+
+RF003
+Descrição: O sistema deve permitir o gerenciamento (inclusão, alteração, consulta e exclusão) de apartamentos.
+
+RF004
+Descrição: O sistema deve permitir o gerenciamento (inclusão, alteração, consulta e exclusão) de moradores associados a um apartamento.
+
+RF005
+Descrição: O sistema deve permitir o gerenciamento (inclusão, alteração, consulta e exclusão) de visitantes.
+
+RF006
+Descrição: O sistema deve permitir o registro de controle de acesso (entrada e saída) de visitantes, associando a visita a um apartamento e morador.
+
+RF007
+Descrição: O sistema deve permitir o registro de recebimento e entrega de encomendas.
+
+----------------------------------------------------------------------
+
+iii) Requisitos Não Funcionais
+
+RNF001 (Portabilidade/Compatibilidade)
+Descrição: O sistema deve ser desenvolvido em Java Desktop (utilizando Swing), permitindo que seja executado em múltiplos sistemas operacionais (Windows, Linux, macOS).
+
+RNF002 (Banco de Dados / Independência de Rede)
+Descrição: O sistema deve utilizar um banco de dados local e embarcado (como o SQLite) para assegurar o funcionamento contínuo e independente de conexão de internet externa.
+
+RNF003 (Usabilidade)
+Descrição: A interface deve ser de fácil utilização, com telas limpas e atalhos intuitivos para permitir que porteiros com pouca familiaridade tecnológica operem o sistema rapidamente.
+
+RNF004 (Segurança de Dados)
+Descrição: As senhas dos usuários devem ser armazenadas no banco de dados de forma criptografada ou utilizando hashes seguros (ex: SHA-256).
+
+RNF005 (Privacidade / LGPD)
+Descrição: O sistema deve prever a segurança e o controle de acesso aos dados cadastrais de visitantes e moradores para estar em conformidade com as diretrizes da LGPD (Lei Geral de Proteção de Dados).
+
+======================================================================
+
+C) Diagramas do Sistema (Esboço Conceitual e Estrutural)
+
+Estes diagramas representam visualmente a arquitetura e o fluxo do seu sistema. Podem ser colados diretamente no Word ou desenhados em ferramentas como Draw.io / Astah a partir destas especificações.
+
+----------------------------------------------------------------------
+
+1. DIAGRAMA DE CASOS DE USO (UML)
+Representa as interações dos atores com as funcionalidades do sistema.
+
+      +-----------------------------------------------------+
+      | Sistema de Portaria - Condomínio Reserva da Aldeia  |
+      |                                                     |
+      |                 [ Efetuar Login ]                   |
+      |                        ^                            |
+      |                        | <<include>>                |
+      |                        |                            |
+  o   |              +---------+---------+                  |
+ /|\ -+------------->| Cadastrar Usuário |                  |
+  |   |              |   (Síndico/Port)  |                  |
+ / \  |              +-------------------+                  |
+      |                                                     |
+Admin |              +------------------------+             |  o
+(Síndico)----------->| Gerenciar Apartamentos |             | /|\
+      |              +------------------------+             |  |
+      |                                                     | / \
+      |              +---------------------+                |
+      |------------->| Gerenciar Moradores |                |Porteiro
+      |              +---------------------+                |
+      |                        ^                            |
+      |                        | (opcional)                 |
+      |                        |                            |
+      |              +----------------------+               |
+      +------------->| Gerenciar Visitantes |<--------------+
+      |              +----------------------+               |
+      |                                                     |
+      |              +--------------------------+           |
+      +------------->| Registrar Entrada/Saída  |<----------+
+      |              |       de Visitantes      |           |
+      |              +--------------------------+           |
+      |                                                     |
+      |              +--------------------------+           |
+      +------------->| Gerenciar Encomendas     |<----------+
+      |              | (Recebimento e Entrega)  |           |
+      |              +--------------------------+           |
+      +-----------------------------------------------------+
+
+----------------------------------------------------------------------
+
+2. DIAGRAMA DE ENTIDADE-RELACIONAMENTO (DER / Banco de Dados)
+Representa como as tabelas do seu banco de dados (SQLite) se organizam e se relacionam.
+
+  +------------------+          +------------------+
+  |     USUARIOS     |          |   APARTAMENTOS   |
+  +------------------+          +------------------+
+  | PK | id          |          | PK | id          |
+  |    | login       |          |    | torre       |
+  |    | senha       |          |    | bloco       |
+  |    | tipo        |          |    | andar       |
+  |    | cpf         |          |    | numero      |
+  +------------------+          +------------------+
+                                         |
+                                         | 1
+                                         |
+                                         | 0..*
+                                         v
+                                +------------------+
+                                |    MORADORES     |
+                                +------------------+
+                                | PK | id          |
+                                |    | nome        |
+                                |    | cpf         |
+                                |    | login       |
+                                |    | senha       |
+                                | FK | apartamento_|
+                                |    | id          |
+                                +------------------+
+                                   /            \
+                       +----------/ 1            \ 1-----------+
+                       | 0..*                     0..*         |
+                       v                                       v
+            +------------------+                      +------------------+
+            |    VISITANTES    |                      |    ENCOMENDAS    |
+            +------------------+                      +------------------+
+            | PK | id          |                      | PK | id          |
+            |    | nome        |                      | FK | morador_id  |
+            |    | cpf         |                      |    | entregador  |
+            | FK | apartamento_|                      |    | recebedor   |
+            |    | id          |                      |    | data_recebi_|
+            | FK | morador_id  |                      |    | mento       |
+            |    | data_entrad |                      |    | status      |
+            |    | a           |                      +------------------+
+            |    | data_saida  |
+            +------------------+
