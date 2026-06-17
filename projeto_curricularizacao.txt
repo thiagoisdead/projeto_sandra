@@ -134,10 +134,10 @@ Representa como as tabelas do seu banco de dados (SQLite) se organizam e se rela
   |     USUARIOS     |          |   APARTAMENTOS   |
   +------------------+          +------------------+
   | PK | id          |          | PK | id          |
-  |    | login       |          |    | torre       |
-  |    | senha       |          |    | bloco       |
-  |    | tipo        |          |    | andar       |
-  |    | cpf         |          |    | numero      |
+  | UK | login       |          | UK | torre       |
+  |    | senha       |          | UK | bloco       |
+  |    | tipo        |          | UK | andar       |
+  | UK | cpf         |          | UK | numero      |
   +------------------+          +------------------+
                                          |
                                          | 1
@@ -149,7 +149,7 @@ Representa como as tabelas do seu banco de dados (SQLite) se organizam e se rela
                                 +------------------+
                                 | PK | id          |
                                 |    | nome        |
-                                |    | cpf         |
+                                | UK | cpf         |
                                 |    | login       |
                                 |    | senha       |
                                 | FK | apartamento_|
@@ -160,15 +160,22 @@ Representa como as tabelas do seu banco de dados (SQLite) se organizam e se rela
                        | 0..*                     0..*         |
                        v                                       v
             +------------------+                      +------------------+
-            |    VISITANTES    |                      |    ENCOMENDAS    |
+            |     VISITAS      |                      |    ENCOMENDAS    |
             +------------------+                      +------------------+
             | PK | id          |                      | PK | id          |
-            |    | nome        |                      | FK | morador_id  |
-            |    | cpf         |                      |    | entregador  |
-            | FK | apartamento_|                      |    | recebedor   |
-            |    | id          |                      |    | data_recebi_|
-            | FK | morador_id  |                      |    | mento       |
-            |    | data_entrad |                      |    | status      |
-            |    | a           |                      +------------------+
-            |    | data_saida  |
-            +------------------+
+            | FK | visitante_id|--+                   | FK | morador_id  |
+            | FK | apartamento_|  |                   |    | entregador  |
+            |    | id          |  |                   |    | recebedor   |
+            | FK | morador_id  |  |                   |    | data_recebi_|
+            |    | data_entrada|  |                   |    | mento       |
+            |    | data_saida  |  |                   |    | status      |
+            +------------------+  |                   +------------------+
+                                  | 1..*
+                                  v
+                        +------------------+
+                        |    VISITANTES    |
+                        +------------------+
+                        | PK | id          |
+                        |    | nome        |
+                        | UK | cpf         |
+                        +------------------+

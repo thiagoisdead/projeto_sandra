@@ -1,3 +1,4 @@
 @echo off
-java -cp "bin;lib/*" br.com.reservadaaldeia.portaria.Main
+java -cp "bin;lib/*" portaria.Main
 pause
+
